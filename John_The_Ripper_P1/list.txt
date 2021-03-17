@@ -1,0 +1,29 @@
+<--------------------------------- Bitacora John the Ripper --------------------------------->
+
+rm john.pot	-> Remueve hsashes encontrados anteriormente.
+hash-identifier	-> Programa que identifica el tipo de hash.
+unshadow	-> The unshadow command will basically combine the data of /etc/passwd and 
+			/etc/shadow to create 1 file with username and password details.
+
+Crackeo de archivos ZIP
+----------------------------------------------------------------------------------------------
+
+cd /home/panchis/Desktop/
+mkdir John
+cd John
+touch InnerZip.txt
+zip -P 123456 Hashed.zip InnerZip.txt
+
+zip2john Hashed.zip > hash.txt
+ls /usr/share/wordlists/
+cd /usr/share/wordlists
+gunzip rockyou.txt.gz
+
+./john --wordlist=/usr/share/wordlists/rockyou.txt /home/panchis/Desktop/John/hash.txt
+
+----------------------------------------------------------------------------------------------
+
+unshadow /etc/passwd /etc/shadow > /home/panchis/Desktop/John/usuarios.txt
+
+Crackeo de contraseñas de ususario
+----------------------------------------------------------------------------------------------
