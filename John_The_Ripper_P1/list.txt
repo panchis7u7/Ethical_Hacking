@@ -6,6 +6,7 @@ unshadow	-> The unshadow command will basically combine the data of /etc/passwd 
 			/etc/shadow to create 1 file with username and password details.
 
 nano /etc/resolv.conf	-> Resolve wsl2 internet connectivity issues.
+mv run/ jhon	-> rename run folder to john.
 
 ----------------------------------------------------------------------------------------------
 Crackeo de archivos ZIP
@@ -28,7 +29,6 @@ Crackeo de contraseñas de ususario
 ----------------------------------------------------------------------------------------------
 
 adduser joaquin	-> 123456
-mv run/ jhon	-> rename run folder to john.
 /sbin/John/unshadow /etc/passwd /etc/shadow > unshadowed.txt
 /sbin/John/john --format=crypt --wordlist=/usr/share/wordlists/rockyou.txt --rules unshadowed.txt
 deluser joaquin
