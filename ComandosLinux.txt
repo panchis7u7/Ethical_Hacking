@@ -1,0 +1,5 @@
+readelf -s [object file *.o] -> Display information about an ELF binary. 
+nm [object file *.o] -> Displays symbols from object files.
+
+applications:
+- Get c++ mangled name functions.
