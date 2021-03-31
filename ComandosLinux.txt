@@ -3,3 +3,14 @@ nm [object file *.o] -> Displays symbols from object files.
 
 applications:
 - Get c++ mangled name functions.
+
+//Snap
+snap changes -> Muestra una lista de los cambios en snap.
+snap abort [id] -> Aborta un cambio de la lista de cambios.
+
+//Archivos.
+head -c [numero de bytes] [archivo]
+
+//Descomprimir archivos.
+tar -xvf [archivo tar.xz] -C [Destino]
+
