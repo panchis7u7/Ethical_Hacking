@@ -17,7 +17,8 @@ tar -xvf [archivo tar.xz] -C [Destino]
 //tmux.
 tmux -> Inicia sesion de tmux.
 tmux ls -> Muestra todas las sesiones.
-tmux attach -t [numero_sesion] -> Acopla una sesion existente a tmux.
-tmux kill-session -t [numero_sesion] ->Elimina una sesion existente en tmux.
+tmux attach -t [nombre_sesion] -> Acopla una sesion existente a tmux.
+tmux kill-session -t [nombre_sesion] -> Elimina una sesion existente en tmux.
+tmux rename-session -t [nombre_sesion] [nuevo_nombre_sesion] -> Renombra una sesion existente de tmux.
 C^b d -> Desacoplar una sesion.
 
