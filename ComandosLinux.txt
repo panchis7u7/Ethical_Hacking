@@ -36,4 +36,15 @@ docker system prune -> Remove all unused docker objects.
 
 //Postgres docker.
 docker run -dp 5432:5432 -e POSTGRES_PASSWORD=password postgres
-docker exec -it ebfb84b68970 bash
+docker run --name postgres-alpine -e POSTGRES_PASSWORD=password -dp 5432:5432 postgres:alpine
+
+//Copy sql file to docker container.
+docker cp /home/panchis/Desktop/Practicas_Android/SGE_Services_Springboot/Database/scholar.sql postgres-alpine:/docker-entrypoint-initdb.d/scholar.sql
+
+//Execute sql table definitions file and dummy inserts file in postgres.
+docker exec -it postgres-alpine psql -U postgres -c "CREATE DATABASE scholar"
+docker exec -u postgres postgres-alpine psql scholar postgres -f docker-entrypoint-initdb.d/scholar.sql
+cat /home/panchis/Desktop/Practicas_Android/SGE_Services_Springboot/Database/inserts-scholar.sql | docker exec -i postgres-alpine psql -U postgres -d scholar
+
+cat ./query.sql | docker exec -i <container-name> psql -U <user> -d <database>
+docker exec -it ebfb84b68970 bash	
