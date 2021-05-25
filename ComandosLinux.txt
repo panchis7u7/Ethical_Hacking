@@ -22,3 +22,18 @@ tmux kill-session -t [nombre_sesion] -> Elimina una sesion existente en tmux.
 tmux rename-session -t [nombre_sesion] [nuevo_nombre_sesion] -> Renombra una sesion existente de tmux.
 C^b d -> Desacoplar una sesion.
 
+//Docker.
+docker run [nombre_imagen] -> Corre una imagen.
+docker pull [nombre_imagen]:[nombre_version] -> Descargar imagen.
+docker ps -a -> Muestra todos los contenedores activos e inactivos.
+docker images | head -> Muestra las primeras 10 imagenes descargadas.
+docker logs [container_id | nombre] -> Muestra los registrso del contenedor.
+docker exec -it [container_id] [comando] -> Ejecuta un comando dentro del contenedor.
+docker stop [container_id] -> Para la ejecucion del contenedor.
+docker run -d [nombre_imagen] -> Corre un contenedor en el background.
+docker run -p [puerto_container:puerto_local] [nombre_imagem] -> Expone un puerto a la red local.
+docker system prune -> Remove all unused docker objects.
+
+//Postgres docker.
+docker run -dp 5432:5432 -e POSTGRES_PASSWORD=password postgres
+docker exec -it ebfb84b68970 bash
