@@ -42,9 +42,24 @@ docker run --name postgres-alpine -e POSTGRES_PASSWORD=password -dp 5432:5432 po
 docker cp /home/panchis/Desktop/Practicas_Android/SGE_Services_Springboot/Database/scholar.sql postgres-alpine:/docker-entrypoint-initdb.d/scholar.sql
 
 //Execute sql table definitions file and dummy inserts file in postgres.
+docker exec -it postgres-alpine psql -U postgres -c "DROP DATABASE scholar"
 docker exec -it postgres-alpine psql -U postgres -c "CREATE DATABASE scholar"
 docker exec -u postgres postgres-alpine psql scholar postgres -f docker-entrypoint-initdb.d/scholar.sql
 cat /home/panchis/Desktop/Practicas_Android/SGE_Services_Springboot/Database/inserts-scholar.sql | docker exec -i postgres-alpine psql -U postgres -d scholar
+docker exec -it postgres-alpine psql -U postgres scholar -c "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"
+docker exec -i postgres-alpine psql -U postgres scholar -c "SELECT * FROM alumnos;"
 
 cat ./query.sql | docker exec -i <container-name> psql -U <user> -d <database>
 docker exec -it ebfb84b68970 bash	
+
+//Jupyter.
+sudo apt install python3-pip python3-dev -> Install jupyter dependencies.
+(La bandera -H asegura que la política de seguridad establezca la variable de entorno de inicio en el directorio de inicio del usuario de destino.)
+sudo -H pip3 install --upgrade pip -> Actualiza pip.
+sudo -H pip3 install virtualenv -> Descarga creador de entornos virtuales para proyectos jupyter.
+virtualenv [Directorio] -> Crea entorno virtual en el directorio especificado.
+source [Directorio_entorno]/bin/activate -> Activa el entorno virtual.
+pip install jupyter -> Instala jupyter.
+deactivate -> Desactiva entorno virtual.
+
+
