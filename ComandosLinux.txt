@@ -62,4 +62,37 @@ source [Directorio_entorno]/bin/activate -> Activa el entorno virtual.
 pip install jupyter -> Instala jupyter.
 deactivate -> Desactiva entorno virtual.
 
+//Powershell.
+Test-Path c:\scripts\test.txt -> Verifica la existencia de un archivo.
+Get-EventLog syste -newest 5 | Sort-Object eventid -> Ordena una cierta cantidad de objetos por su identificador (id).
+Get-Process | Where-Object {$_.handles -ge 200} -> Busca por un proceso cuyos manejadores o handles sean mayores a 200.
+Nslookup -> Realiza una consulta al sistema de nombre de dominios (DNS) para obtener el mapeo de direcciones IP u otros registros DNS.
 
+//nmap.
+nmap -A -T4 scanme.nmap.org -> Escaneo de red.
+
+//tcpdump.
+tcpdump -r [Archivo .pcap] [protocolo_capa_4] -c [Numero_paquetes_a_mostrar] -> Apertura de archivos de captura.
+sudo tcpdump –i [Interfaz] –s [Longitud_paquete] –w [Archivo_Guardar.pcap] -> Capturar contenido de trafico de protocolo de capa 4.
+
+//Archivo de registro y journal.
+journalctl -> Muestra entradas de registro almacenadas.
+sudo journalctl –utc -> Muestra todas las marcas de hora en hora UTC.
+sudo journalctl –b -> Muestra kas entradas de registro registradas durante el ultimo arranque.
+sudo journalctl -u [nombre_servicio.service] --since today -> Muestra todos los archivos de registro de nginx que se registraron hoy.
+sudo journalctl -u [nombre_servicio.service] --since "2 hours ago" -> Muestra todos los archivos de registro de nginx que se registraron hace 2 horas.
+sudo journalctl -u [nombre_servicio.service] --since "1 day ago" -> Muestra todos los archivos de registro de nginx que se registraron ayer.
+sudo journalctl –-list-boots -> Genera una lista de los arranque anteriores.
+sudo journalctl –k -> Muestra mensajes generados por el kernel unicamente.
+sudo journalctl –f -> Sigue los archivos de registro en forma activa a medida que se los escribe (tiempo real).
+
+//Sistemas de archivos.
+lsblk -> Muestra todos los dispositivos de bloques.
+mount -> Muestra informacion mas detallada sobre los sistemas de archivos montados en el momento.
+ln -s [nombre_archivo] [nombre_enlace] -> Crea un enlace simbolico a un archivo (apunta al nombre de otro archivo).
+ln [nombre_archivo] [nombre_enlace] -> Crea un enlace rigido a un archivo (apunta al contenido de otro archivo).
+
+//Utilidades.
+cat /etc/resolv.conf -> Servidores DNS.
+netstat -r -> Tabla de routing IP.
+netstat -> Identifica a los servidores de red que se estan ejecutando en una computadora.
