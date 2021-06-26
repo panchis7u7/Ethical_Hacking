@@ -1,0 +1,100 @@
+############################################################################################################################
+
+#check_enviroment.sh  
+
+############################################################################################################################
+ 
+nano $HOME/check_enviroment.sh
+chmod +x $HOME/check_enviroment.sh
+$HOME/check_enviroment.sh
+ 
+#!/bin/bash
+
+echo
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e  "\e[0;33mPKG_CONFIG_PATH:" "\e[0;38m$PKG_CONFIG_PATH"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e "\e[0;33mPATH:\t\t" "\e[0;38m$PATH"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e  "\e[0;33mLD_LIBRARY_PATH:" "\e[0;38m$LD_LIBRARY_PATH"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e "\e[0;33mLDFLAGS:\t" "\e[0;38m$LDFLAGS"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e "\e[0;33mCPPFLAGS:\t" "\e[0;38m$CPPFLAGS"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e "\e[0;33mXDG_DATA_DIRS:\t" "\e[0;38m$XDG_DATA_DIRS"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e "\e[0;33mGI_TYPELIB_PATH:" "\e[0;38m$GI_TYPELIB_PATH"
+
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo  -e "\e[0;33mGSETTINGS_SCHEMA_DIR:" "\e[0;38m$GSETTINGS_SCHEMA_DIR"
+echo  -e "\e[0;34m======================================================================================================================================================================="
+echo
+
+############################################################################################################################
+
+#set_enviroment.sh
+
+############################################################################################################################
+
+nano $HOME/set_enviroment.sh
+source $HOME/set_enviroment.sh
+$HOME/check_enviroment.sh
+
+# compiler
+CPPFLAGS="-I$HOME/usr/include"
+LDFLAGS="-L$HOME/usr/lib"
+PKG_CONFIG_PATH="$HOME/usr/lib/pkgconfig:$HOME/usr/lib/x86_64-linux-gnu/pkgconfig:$HOME/usr/share/pkgconfig"
+export CPPFLAGS LDFLAGS PKG_CONFIG_PATH
+
+# linker
+LD_LIBRARY_PATH="$HOME/usr/lib/x86_64-linux-gnu/"
+PATH="$HOME/usr/bin:$PATH"
+export LD_LIBRARY_PATH PATH
+
+# gir
+XDG_DATA_DIRS=$HOME/usr/share:$XDG_DATA_DIRS
+export XDG_DATA_DIRS
+
+# girepository-1.0
+export GI_TYPELIB_PATH=$HOME/usr/lib/x86_64-linux-gnu/girepository-1.0
+
+# gsetting
+export GSETTINGS_SCHEMA_DIR=$HOME/usr/share/glib-2.0/schemas
+
+############################################################################################################################
+
+#meson  
+
+############################################################################################################################
+
+sudo apt-get install python3-pip tracker
+sudo apt purge meson -y
+mkdir -p $HOME/tmp/Meson
+cd $HOME/tmp/Meson
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py --upgrade --disable-pip-version-check --no-cache-dir
+sudo pip3 install meson
+sudo ln -s /usr/local/bin/meson /usr/bin/meson
+meson --version
+
+############################################################################################################################
+
+#glib
+
+############################################################################################################################
+
+sudo apt-get install git cmake ninja-build libffi-dev libpcre3-dev libelf-dev libdbus-1-dev libxml2-utils libselinux1-dev libmount-dev libxt-dev
+mkdir -p $HOME/tmp/Glib/build
+cd $HOME/tmp/Glib/build
+wget https://download.gnome.org/sources/glib/2.9/glib-2.9.6.tar.gz
+tar -xf glib-2.9.6.tar.gz
+cd $HOME/tmp/Glib/build/glib-2.9.6/
+./configure
+

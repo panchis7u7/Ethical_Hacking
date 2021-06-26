@@ -96,3 +96,7 @@ ln [nombre_archivo] [nombre_enlace] -> Crea un enlace rigido a un archivo (apunt
 cat /etc/resolv.conf -> Servidores DNS.
 netstat -r -> Tabla de routing IP.
 netstat -> Identifica a los servidores de red que se estan ejecutando en una computadora.
+
+//MySQL.
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
