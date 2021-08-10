@@ -1,0 +1,9 @@
+FCS -> No corrige errores, solo valida (Verifica la integridad de los datos).
+CRC -> Detecta errores por EMI. La mayoria de errores en el crc se debe a problemas en la capa fisica.
+outband -> Serial.
+inband -> Telnet, SSH.
+15 niveles de privilegios.
+wireless -> csma/ca.
+Fisico -> csma/cd.
+
+show interface status.

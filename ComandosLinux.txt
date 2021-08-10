@@ -33,6 +33,10 @@ docker stop [container_id] -> Para la ejecucion del contenedor.
 docker run -d [nombre_imagen] -> Corre un contenedor en el background.
 docker run -p [puerto_container:puerto_local] [nombre_imagem] -> Expone un puerto a la red local.
 docker system prune -> Remove all unused docker objects.
+docker rm [nombre_contenedor] -> Remueve el contenedor.
+docker volume ls -> Enlista los volumenes usados por docker.
+docker volume inspect [nombre_volumen] -> Inspeciona un volumen.
+docker volume rm [nombre_volumen] -> Remueve un volumen.
 
 //Postgres docker.
 docker run -dp 5432:5432 -e POSTGRES_PASSWORD=password postgres
@@ -96,6 +100,7 @@ ln [nombre_archivo] [nombre_enlace] -> Crea un enlace rigido a un archivo (apunt
 cat /etc/resolv.conf -> Servidores DNS.
 netstat -r -> Tabla de routing IP.
 netstat -> Identifica a los servidores de red que se estan ejecutando en una computadora.
+sudo netstat -lpn | grep :[no_puerto] -> Busca informacion del proceso que tiene abierto el puerto [].
 
 //MySQL.
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
