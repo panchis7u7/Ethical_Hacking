@@ -1,0 +1,7 @@
+// SSH.
+Get-Service -Name ssh-agent | Set-Service -StartupType Automatic => Start SSH-Agent service. 
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0 => Add SSH Server capabilities to windows.
+Start-Service sshd => Start SSH damon (server) service.
+
+//Windows functionality related.
+Set-ExecutionPolicy Unrestricted => Run 3rd party scripts.
