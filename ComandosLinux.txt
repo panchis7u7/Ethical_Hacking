@@ -38,6 +38,9 @@ docker volume ls -> Enlista los volumenes usados por docker.
 docker volume inspect [nombre_volumen] -> Inspeciona un volumen.
 docker volume rm [nombre_volumen] -> Remueve un volumen.
 
+//Docker-compose.
+docker-compose down -> Para la ejecucion y remueve los contenedores, volumenes y servicios.
+
 //Postgres docker.
 docker run -dp 5432:5432 -e POSTGRES_PASSWORD=password postgres
 docker run --name postgres-alpine -e POSTGRES_PASSWORD=password -dp 5432:5432 postgres:alpine
