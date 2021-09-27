@@ -21,6 +21,8 @@ tmux attach -t [nombre_sesion] -> Acopla una sesion existente a tmux.
 tmux kill-session -t [nombre_sesion] -> Elimina una sesion existente en tmux.
 tmux rename-session -t [nombre_sesion] [nuevo_nombre_sesion] -> Renombra una sesion existente de tmux.
 C^b d -> Desacoplar una sesion.
+C-b ^[ -> Mueve split hacia arriba.
+C-b [ -> Activa el modo de scroll.
 
 //Docker.
 docker run [nombre_imagen] -> Corre una imagen.
@@ -77,6 +79,9 @@ Nslookup -> Realiza una consulta al sistema de nombre de dominios (DNS) para obt
 
 //nmap.
 nmap -A -T4 scanme.nmap.org -> Escaneo de red.
+
+//Escaneo.
+netdiscover
 
 //tcpdump.
 tcpdump -r [Archivo .pcap] [protocolo_capa_4] -c [Numero_paquetes_a_mostrar] -> Apertura de archivos de captura.

@@ -1,0 +1,67 @@
+/********************************** OS *****************************************/
+#Enlistar todos los kernels instalados en el OS.
+dpkg --list | grep linux-image
+dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' | awk '{ print $2 }'
+sudo apt purge
+
+#Checar que kernel se esta corriendo actualmente.
+uname -a
+
+#Troubleshoot de audio.
+sudo pulseaudio -k && sudo alsa force-reload
+sudo apt remove --purge alsa-base pulseaudio
+sudo apt-get install pulseaudio alsa-base -y
+sudo apt-get remove timidity pavucontroll
+
+rm  ~/.config/pulse/*		#Remover configuracion, se debera reiniciar para cargar nueva configuracion.
+sudo rm -r ~/.pulse ~/.pulse-cookie ~/.config/pulse/
+
+systemctl enable --user pulseaudio.service
+systemctl enable --user pulseaudio.socket
+
+#Actualizar OS Ubuntu.
+sudo apt dist-upgrade
+
+#Actualizar a version de desarrollo.
+sudo do-release-upgrade
+
+#Obtener version de openGL.
+glxinfo | grep "OpenGL version"
+
+/*********************************** NMAP **************************************/
+#Check for alive systems.
+nmap -sP 192.168.1.0/24
+
+#Check for open ports. (-sT -> TCP connect.), (-sS -> Stealth ataque SYN.)
+sudo nmap -sT -p 80,443 192.168.1.0/24 
+sudo nmap -sS -p 80,443 192.168.1.0/24
+
+#Check a specific host, and show most commonly used ports.
+sudo nmap -sT 192.168.1.131
+
+#OS detection. (-A -> all).
+sudo nmap -O 192.168.1.135
+sudo nmap -A 192.168.1.135
+
+#Decoy
+sudo nmap -sS -D 192.168.1.131 192.168.1.135
+
+#Vulnerabilities:
+sudo nmap --script vuln 192.168.1.131
+
+/************************************ WIFI *************************************/
+
+Comunicacion WIFI desde terminal:
+#Observar las diferentes redes inalambricas disponibles:
+nmcli d wifi list ifname wlan0
+
+#Conectarse a la red:
+nmcli d wifi connect "[SSID]" password [contasena_red] ifname wlan0
+
+#Desconectarse a la red:
+nmcli d disconnect wlan0
+
+/************************************* SCP *************************************/
+
+sudo scp prueba.c root@192.168.1.131:Desktop/Proyectos/C_C++/prueba
+

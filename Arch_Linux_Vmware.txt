@@ -1,0 +1,42 @@
+setfont -d => Set font size to double.
+lsblk => List block devices.
+
+cfdisk /dev/sda => Partition disk.
+gpt
+Create bootloader 1MB (BIOS Boot) Partition.
+Create Swap File 4G (Linux Swap) Partition.
+Create Linux (Linux Filesystem) Partition.
+Write.
+
+mkfs.ext4 /dev/sda3 => Format Linux Filesystem partitions.
+mkswap /dev/sda2 => Format swap partition.
+swapon -a => Enable swap partition.
+
+# Mount data partition.
+cd /mnt
+mount /dev/sda3 /mnt
+
+# Copy Operating System files to mnt/ folder.
+pacstrap /mnt base linux linux-firmware nano grub dhcpcd
+
+# Edit configuration files and tell Grub where to find boot files.
+genfstab /mnt
+genfstab /mnt >> /mnt/etc/fstab
+arch-chroot /mnt => Make prevoius mount directory root.
+passwd => Set password for administrator.
+grub-install /dev/sda => Install Grub (Install to hard disk not to partition).
+grub-mkconfig -o /boot/grub/grub.cfg => Configure Grub (Generate Grub configuration file).
+exit
+reboot
+
+systemctl enable dhcpcd => Automatic (Persistent) activation of dhcpcd service.
+systemctl start dhcpcd => Activate dhcpcd for internet connectivity.
+
+# Configure package manager.
+nano /etc/pacman.conf
+Uncoment Multilib and include (below multilib tag) load packages.
+pacman -Syy => Synchronize pacman packages.
+
+# Start a ssh server.
+pacman -S openssh
+systemctl start sshd
