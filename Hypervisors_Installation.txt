@@ -89,6 +89,9 @@ vagrant plugin install vagrant-libvirt
 # Instalacion de plugin de conversion de distintos proveedores.
 vagrant plugin install vagrant-mutate
 
+# Instalacion de plugin que permite stablecer el tamano de disco.
+vagrant plugin install vagrant-disksize
+
 ##################################################################################
 
 #################################### Hyper-V #####################################
