@@ -4,6 +4,11 @@ nm [object file *.o] -> Displays symbols from object files.
 applications:
 - Get c++ mangled name functions.
 
+//Memory free space check.
+df -h --total -> Muestra informacion sobre las capacidades de los discos duros.
+vmstat -s -> Muestra informacion a cerca de todos los recursos que utilizan memoria en el sistema.
+free -m -> Muestra informacion a cerca de la memoria ram usada/dispnible y de la particion SWAP.
+
 //Snap
 snap changes -> Muestra una lista de los cambios en snap.
 snap abort [id] -> Aborta un cambio de la lista de cambios.
@@ -39,6 +44,7 @@ docker rm [nombre_contenedor] -> Remueve el contenedor.
 docker volume ls -> Enlista los volumenes usados por docker.
 docker volume inspect [nombre_volumen] -> Inspeciona un volumen.
 docker volume rm [nombre_volumen] -> Remueve un volumen.
+docker exec -i mycontainer bash < mylocal.sh -> Correr scripts locales en un contenedor.
 
 //Docker-compose.
 docker-compose down -> Para la ejecucion y remueve los contenedores, volumenes y servicios.

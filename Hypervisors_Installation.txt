@@ -1,0 +1,118 @@
+Procedimiento para preparar KVM en un entorno virtual (Vmware Workstation PRO 16) en Ubuntu (21.04)
+
+##################################### VMWare ######################################
+
+#Instalacion de modulos a nivel de kernel.
+sudo vmware-modconfig --console --install-all
+
+-------------------------------------------------------------------------
+Resolucion al error: "Cannot open /dev/vmmon: No such file or directory".
+-------------------------------------------------------------------------
+
+# Generar un par de claves usando openssl para firmar los módulos vmmon y vmnet:
+openssl req -new -x509 -newkey rsa:2048 -keyout VMWare16.priv -outform DER -out VMWare16.der -nodes -days 36500 -subj "/CN=VMware/"
+
+# Firmar los módulos usando la clave generada ejecutando estos comandos:
+sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./VMWare16.priv ./VMWare16.der $(modinfo -n vmmon)
+sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./VMWare16.priv ./VMWare16.der $(modinfo -n vmnet)
+
+# Importar la clave pública a la lista MOK del sistema ejecutando este comando:
+mokutil --import VMWare16.der
+
+# Confirme una contraseña para esta solicitud de inscripción MOK.
+# Reinicia tu máquina. Siga las instrucciones para completar la inscripción de la UEFI consol.
+
+-------------------------------------------------------------------------
+
+# Instalacion de VMWare Tools para distribuciones linux.
+apt-get install open-vm-tools
+
+##################################################################################
+
+####################################### KVM #######################################
+
+# Checar que nuestro sistema operativo en realidad sea la version 21.04.
+lsb_release -a
+
+#Checar que Ubuntu sea compatible con KVM. (Si el resultado > 0, el procesador soporta virtualizacion de hardware)
+egrep -c '(vmx|svm)' /proc/cpuinfo
+
+#En caso de que de un error el comando de arriba, ejecutar:
+sudo apt install cpu-checker
+
+#Checar si Ubuntu soporta KVM.
+sudo kvm-ok 
+
+#Instalar KVM:
+sudo apt-get update
+# sudo apt install -y qemu qemu-kvm libvirt-daemon libvirt-clients bridge-utils virt-manager
+sudo apt install -y qemu qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+
+#Checar el estado del daemon de libvirtd.
+sudo systemctl status libvirtd
+
+#Habilitamos el servicio libvirtd que arranque junto a ubuntu.
+sudo systemctl enable --now libvirtd
+
+#Asegurar que el usuario administrador pertenezca al grupo libvirt.
+sudo addgroup libvirtd
+sudo adduser `id -un` libvirt
+
+#Verificacion de la instalacion.
+virsh list --all
+
+#Checar que los modulos de kvm se encuentren en ejecucion.
+lsmod | grep -l kvm
+
+#Checar que sistemas operativos y distribuciones son compatibles con KVM.
+osinfo-query os
+
+#Creacion de maquina virtual desde la terminal.
+sudo virt-install --name = Debian --os-variant = debian10 --vcpu = 412 --ram = 2048 --graphics spice --location = /home/technowikis/Downloads/debian-10.6.0-amd64-netinst.iso --network bridge: enp0s3
+
+#Para la creacion de maquinas virtuales en modo grafico.
+sudo apt install uvtool
+
+#Una vez instalado el modulo de arriba, accedemos al administrador grafico.
+sudo virt-manager
+
+##################################################################################
+# Vagrant con KVM.
+##################################################################################
+
+# Instalacion de vagrant.
+sudo aptget install vagrant
+
+# Instalacion de plugin de comunicacion con KVM.
+vagrant plugin install vagrant-libvirt
+
+# Instalacion de plugin de conversion de distintos proveedores.
+vagrant plugin install vagrant-mutate
+
+##################################################################################
+
+#################################### Hyper-V #####################################
+
+# Habilitar Hyper-V usando Powershell.
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+##################################################################################
+
+Xen orchestra docker container.
+
+docker pull ronivay/xen-orchestra
+docker run -itd -p 80:80 -v /home/panchis/Documents/Docker_Data/XenOrchestra/data/xo-server:/var/lib/xo-server -v /home/panchis/Documents/Docker_Data/XenOrchestra/data/redis:/var/lib/redis ronivay/xen-orchestra
+
+##################################################################################
+
+##################################### Samba ######################################
+
+[sambashare]
+    comment = Samba on Ubuntu
+    path = /home/username/sambashare
+    read only = no
+    browsable = yes
+
+sudo apt-get install samba -y
+sudo service smbd start    
+sudo smbpasswd -a panchis    

@@ -1,0 +1,18 @@
+#####################################################################
+Microstack Ubuntu
+#####################################################################
+
+# Instalacion.
+sudo snap install microstack --devmode --beta
+
+# Inicialiacion.
+sudo microstack init --auto --control
+
+# Instalacion de linux containers (LXD).
+sudo snap install lxd && sudo lxd init
+
+# Reinicializacion de servicios.
+sudo systemctl restart snap.microstack.*
+
+# Obtencion de contrasena.
+sudo snap get microstack config.credentials.keystone-password

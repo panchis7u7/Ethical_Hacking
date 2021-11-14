@@ -1,0 +1,99 @@
+#---------------------------------------------------
+# Obtencion de todos los deployments en ejecucion.
+#---------------------------------------------------
+kubectl get deploy
+
+#---------------------------------------------------
+# Elimina todos los deployments.
+#---------------------------------------------------
+kubectl delete deploy <deployment name>
+
+#---------------------------------------------------
+# Ejecuta un bash hacia el pod.
+#---------------------------------------------------
+kubectl exec -it <pod_name> -c <container_name> -- /bin/bash
+
+####################################################
+Namespaces => Cluster virtuales.
+####################################################
+
+#---------------------------------------------------
+# Creacion de un namespace.
+#---------------------------------------------------
+kubectl create namespace <namespace name>
+
+o
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: test
+  labels:
+    name: test
+kubectl apply -f test.yaml
+
+#---------------------------------------------------
+# Obtencion de todos los namespaces.
+#---------------------------------------------------
+kubectl get namespace
+
+#---------------------------------------------------
+# Creacion de recursos en un namespace.
+#---------------------------------------------------
+kubectl apply -f pod.yaml --namespace=test
+
+o
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  namespace: test
+  labels:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: nginx
+
+#---------------------------------------------------
+# Obtencion de recursos de un namespace.
+#---------------------------------------------------
+kubectl get pods --namespace=<namespace name>
+
+#---------------------------------------------------
+# Cambiar el namespace activo.
+#---------------------------------------------------
+kubens <namespace name>
+
+#---------------------------------------------------
+# Exposicion de pods usando un servicio de kubernetes.
+#---------------------------------------------------
+kubectl expose pod two-containers --type=NodePort --port=80
+
+####################################################
+Pods => Instancia unica de proceso, uno o mas contenedores.
+####################################################
+
+#---------------------------------------------------
+# Mostrar estado del pod.
+#---------------------------------------------------
+kubectl describe pod <pod_name> -n kube-system
+
+#---------------------------------------------------
+# Mostrar arrchivos de registro del pod.
+#---------------------------------------------------
+kubectl logs <pod_name> -n kube-system
+
+#---------------------------------------------------
+# Borrar un pod.
+#---------------------------------------------------
+kubectl delete pod <pod_name>
+
+####################################################
+# Recursos:
+####################################################
+
+[1] https://www.mirantis.com/blog/introduction-to-yaml-creating-a-kubernetes-deployment/
+
+[2] https://www.stratoscale.com/blog/kubernetes/kubernetes-how-to-share-disk-storage-between-containers-in-a-pod/

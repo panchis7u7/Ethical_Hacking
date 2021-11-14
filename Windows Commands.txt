@@ -5,3 +5,6 @@ Start-Service sshd => Start SSH damon (server) service.
 
 //Windows functionality related.
 Set-ExecutionPolicy Unrestricted => Run 3rd party scripts.
+
+// Exponer extensiones de virtualizacion anidada.
+Set-VMProcessor <VMName> -ExposeVirtualizationExtensions $true
