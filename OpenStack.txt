@@ -16,3 +16,33 @@ sudo systemctl restart snap.microstack.*
 
 # Obtencion de contrasena.
 sudo snap get microstack config.credentials.keystone-password
+
+# Acceso al cliente de mysql.
+sudo apt install mysql-client-core-8.0
+sudo snap get microstack config.credentials.mysql-root-password
+sudo mysql -u root -p -S /var/snap/microstack/common/run/mysql/mysqld.sock
+
+# Creacion de usuario.
+openstack user create --domain default --password-prompt <usuario>
+
+# Borrado de usuario.
+openstack user delete --domain default <usuario>
+
+# docs.
+https://docs.openstack.org/python-openstackclient/queens/cli/command-objects/user.html
+
+#####################################################################
+Glance (Creacion de imagenes)
+#####################################################################
+
+https://docs.openstack.org/glance/pike/admin/manage-images.htmlhttps://docs.openstack.org/glance/pike/admin/manage-images.html
+
+#####################################################################
+Ceilometer (Monitoreo de instancias)
+#####################################################################
+
+https://docs.openstack.org/ceilometer/latest/install/install-base-ubuntu.html
+
+# Logs
+journalctl -u snap.microstack.cinder-scheduler.service
+journalctl -u snap.microstack.cinder-uwsgi.service
