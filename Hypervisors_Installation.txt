@@ -17,7 +17,7 @@ sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./VMWare16.priv 
 sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./VMWare16.priv ./VMWare16.der $(modinfo -n vmnet)
 
 # Importar la clave pública a la lista MOK del sistema ejecutando este comando:
-mokutil --import VMWare16.der
+sudo mokutil --import VMWare16.der
 
 # Confirme una contraseña para esta solicitud de inscripción MOK.
 # Reinicia tu máquina. Siga las instrucciones para completar la inscripción de la UEFI consol.

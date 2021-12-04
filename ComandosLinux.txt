@@ -45,6 +45,8 @@ docker volume ls -> Enlista los volumenes usados por docker.
 docker volume inspect [nombre_volumen] -> Inspeciona un volumen.
 docker volume rm [nombre_volumen] -> Remueve un volumen.
 docker exec -i mycontainer bash < mylocal.sh -> Correr scripts locales en un contenedor.
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc) -> Remueve todas las imagenes nulas.
+docker system prune -a --volumes -> Remueve absolutamente todo.
 
 //Docker-compose.
 docker-compose down -> Para la ejecucion y remueve los contenedores, volumenes y servicios.
