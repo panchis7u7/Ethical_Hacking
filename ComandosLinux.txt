@@ -1,8 +1,19 @@
+200.33.171.20
+nmap -p 1-65535 -T4 -A -v
+
 readelf -s [object file *.o] -> Display information about an ELF binary. 
 nm [object file *.o] -> Displays symbols from object files.
 
 applications:
 - Get c++ mangled name functions.
+
+//Connect to a wireless network through a CLI.
+sudo nmcli dev wifi list -> Enlista las redes disponibles.
+sudo nmcli dev wifi connect <network-ssid> password "<pass>" -> Se conecta a una red inalambrica.
+sudo nmcli --ask dev wifi connect network-ssid -> Muestra un prompt para el ingreso de contrasena.
+sudo nmcli con show -> muestra informacion a acerca de la conexion.
+sudo nmcli con down ssid/uuid -> Desconexion de la red actualmente conectada.
+nmcli con up ssid/uuid -> Conexion a una red conocida.
 
 //Memory free space check.
 df -h --total -> Muestra informacion sobre las capacidades de los discos duros.
@@ -121,3 +132,20 @@ sudo netstat -lpn | grep :[no_puerto] -> Busca informacion del proceso que tiene
 //MySQL.
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+
+// Como hacer un buen deployment de next js en entorno de produccion con docker.
+https://nextjs.org/docs/deployment
+
+// Borrar todos los arrendmientos de direcciones IP (dhcp).
+sudo cat /var/lib/dhcp/dhclient.leases -> Imprime todos los arrendamientos.
+sudo rm /var/lib/dhcp/dhclient.leases
+sudo echo "" > /var/lib/dhcp/dhclient.leases
+
+//nslookup.
+Types: DOMAIN, NS (NameServers), MX (Mail Exchange), A (Aliases)
+
+//Reverse (Identificacion de redes)
+traceroute
+whois
+ping => ping.eu
+akky.mx Empresa mexicana que binda el dominio
