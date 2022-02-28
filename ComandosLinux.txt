@@ -149,3 +149,7 @@ traceroute
 whois
 ping => ping.eu
 akky.mx Empresa mexicana que binda el dominio
+
+
+ettercapp configuration:
+https://mundo-hackers.weebly.com/ettercap-y-driftnet.html
