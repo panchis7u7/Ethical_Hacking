@@ -150,6 +150,10 @@ whois
 ping => ping.eu
 akky.mx Empresa mexicana que binda el dominio
 
+//Network Interface naming inconsistency.
+sudo networkctl -> Check the correct name.
+sudo ip link set enc238897s9879c3 name eth0 -> Map the true name with a custom name.
+sudo systemctl restart networking -> Apply changes.
 
 ettercapp configuration:
 https://mundo-hackers.weebly.com/ettercap-y-driftnet.html
