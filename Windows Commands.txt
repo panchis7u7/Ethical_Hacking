@@ -11,6 +11,7 @@ Set-VMProcessor <VMName> -ExposeVirtualizationExtensions $true
 
 // Actualizar powershell.
 Invoke-Expression "& { $(Invoke-Restmethod https://aka.ms/Install-PowerShell.ps1) } -UseMSI"
+iex "& { $(irm https://aka.ms/install-powershell.ps1) } -UseMSI"
 
 // Duplicate files Delete.
 https://sid-500.com/2020/04/26/find-duplicate-files-with-powershell/#:~:text=Open%20PowerShell%20%28Windows%20Key%20%2B%20X%20%2B%20A%29,is%20our%20target%20for%20searching%20for%20duplicate%20files
