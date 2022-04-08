@@ -165,6 +165,6 @@ sudo iwconfig <interface> mode Monitor
 //Aircrack-ng.
 sudo airmon-ng start <wireless_interface> -> Put interface in monitor mode.
 sudo airodump-ng <monitor_wireless_interface> -> Listen for all nearby beacon frames to get target BSSID and channel.
-sudo airodump-ng -c 6 — bssid <target_bssid> -w capture/ <monitor_wireless_interface> -> Start listening for the handshake.
+sudo airodump-ng -c <channel_no> — bssid <target_bssid> -w capture/ <monitor_wireless_interface> -> Start listening for the handshake.
 sudo ifconfig <wireless_interface> up -> Reset interface back to normal mode.
 sudo iwconfig <wireless_interface> channel <n> -> Set interface on a specific channel.
