@@ -13,6 +13,7 @@ sudo nmcli dev wifi connect <network-ssid> password "<pass>" -> Se conecta a una
 sudo nmcli --ask dev wifi connect network-ssid -> Muestra un prompt para el ingreso de contrasena.
 sudo nmcli con show -> muestra informacion a acerca de la conexion.
 sudo nmcli con down ssid/uuid -> Desconexion de la red actualmente conectada.
+nmcli connection modify <SSID> ipv4.route-metric <metric>
 nmcli con up ssid/uuid -> Conexion a una red conocida.
 
 //Memory free space check.
