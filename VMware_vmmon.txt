@@ -1,9 +1,12 @@
 # Generate a key pair using the openssl to sign vmmon and vmnet modules:
 openssl req -new -x509 -newkey rsa:2048 -keyout VMWare16.priv -outform DER -out VMWare16.der -nodes -days 36500 -subj "/CN=VMware/"
 
-#Sign the modules using the generated key by running these commands:
+# Sign the modules using the generated key by running these commands:
 sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./VMWare16.priv ./VMWare16.der $(modinfo -n vmmon)
 sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./VMWare16.priv ./VMWare16.der $(modinfo -n vmnet)
 
 # Import the public key to the system's MOK list by running this command:
 sudo mokutil --import VMWare16.der
+
+# Resolver kernel conflicts:
+https://docs.fedoraproject.org/en-US/quick-docs/how-to-use-vmware/

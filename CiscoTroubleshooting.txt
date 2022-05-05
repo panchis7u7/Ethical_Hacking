@@ -1,0 +1,6 @@
+show processes cpu history
+show environment all
+dir crashinfo:
+show platform software process memory sw 1 r0 all sorted
+show post
+show diagnostic
