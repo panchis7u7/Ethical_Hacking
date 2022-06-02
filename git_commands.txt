@@ -4,3 +4,6 @@ git push <remote> --delete <branch>
 git remote -v |-> See alias URL for a remote repo.
 git add remote <alias> <url> |-> Create new alias for a remote repo URL.
 git remote set-url origin <url> |-> Edit existing alias for a remote repo URL. 
+
+# To restore all files to their stashed version:
+git checkout stash -- .
