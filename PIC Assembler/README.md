@@ -9,7 +9,7 @@ It depends on the following registers for configurations:
     - <b>T0SE</b>: Timer0 Source Edge Select bit; 0 = high to low, 1 = low to high.
     - <b>T0CS</b>: Timer0 Clock Source Select bit (Fosc or T0CKI).
     - <b>PSA</b>: Prescaler Assignment bit. 0 = Assignes the PSC to the Timer0.
-    - <b>PS<2:0></B>: Prescaler Rate Select bits:
+    - <b>PS<2:0></B>: Prescaler Rate Select bits:e
 
 | Bit Value |  Timer0 Rate  |  WDT Rate |
 |-----------|---------------|-----------|
