@@ -1,0 +1,2 @@
+xe host-list => Lists all xcp-hosts including uuid.
+xe sr-create name-label="<storage_name>" shared=false device-config:device=/dev/<device> type=lvm content-type=user host-uuid=<target_host_uuid> => Create new local storage.
