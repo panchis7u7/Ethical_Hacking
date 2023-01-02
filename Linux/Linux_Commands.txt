@@ -204,3 +204,4 @@ echo "options kvm-intel nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
 
 // See diferent java versions installed on system (macOS):
 /usr/libexec/java_home -V
+Path to libs /Library/Java/JavaVirtualMachines/ or /Users/semadrig/Library/Java/JavaVirtualMachines/
