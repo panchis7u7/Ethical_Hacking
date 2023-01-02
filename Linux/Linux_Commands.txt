@@ -201,3 +201,6 @@ sudo systemctl restart libvirtd.service
 sudo modprobe -r kvm_intel
 sudo modprobe kvm_intel nested=1
 echo "options kvm-intel nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
+
+// See diferent java versions installed on system (macOS):
+/usr/libexec/java_home -V
